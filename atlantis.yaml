@@ -1,0 +1,7 @@
+version: 3
+workflows:
+  defaultFlow:
+    plan:
+      steps:
+        - run: terraform init -input=false -no-color
+        - run: terraform plan -input=false -refresh -no-color -out $PLANFILE

@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  ngrok:
+    image: wernight/ngrok:latest
+    ports:
+      - 4040:4040
+    environment:
+      NGROK_PROTOCOL: http
+      NGROK_PORT: atlantis:4141
+      NGROK_AUTH: ${NGROK_AUTH}
+      NGROK_USERNAME: waylew@comcast.net
+    depends_on:
+      - atlantis
+  atlantis:
+    image: runatlantis/atlantis:latest
+    command: ["server","--repo-config=repos.yml"]
+    environment:
+      ATLANTIS_GH_USER: waylew-lexis
+      ATLANTIS_GH_TOKEN: ${GH_TOKEN}
+      ATLANTIS_REPO_ALLOWLIST: "github.com/LexisNexis-RBA/terraform-azurerm-atlantis"
+      ATLANTIS_GH_WEBHOOK_SECRET: ${WEBHOOK_SECRET}
+      ATLANTIS_GH_ORG: LexisNexis-RBA
+    ports:
+      - 4141:4141
