@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "rg" {
   location = "useast"
-  name     = ""
+  name     = "atlantis-rg"
 }
 
 module "atlantis" {
@@ -8,8 +8,8 @@ module "atlantis" {
 
   enabled               = true
   subscription_id       = data.azurerm_subscription.current.id
-  name                  = "waylewatlantis"
-  github_user           = "waylew-lexis"
+  name                  = "atlantis"
+  github_user           = "waylew50"
   github_token          = var.gh_token
   github_webhook_secret = var.gh_webhook_secret
   resource_group_name   = module.resource_group.name
