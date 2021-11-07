@@ -1,8 +1,6 @@
-module "resource_group" {
-  source   = "github.com/Azure-Terraform/terraform-azurerm-resource-group.git?ref=v2.0.0"
-  location = module.metadata.location
-  names    = module.metadata.names
-  tags     = module.metadata.tags
+resource "azurerm_resource_group" "rg" {
+  location = "useast"
+  name     = ""
 }
 
 module "atlantis" {
